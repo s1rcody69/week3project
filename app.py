@@ -15,10 +15,7 @@ def fetch_bookstore_page(url):
    
 
 def scrape_book_listings(page_response):
-    """
-    Parses the HTML, extracts book titles and prices, and cleans the data.
-    Returns a list of dictionaries e.g. [{"title": "...", "price_gbp": 12.99}, ...]
-    """
+    
     soup = BeautifulSoup(page_response.text, "lxml")
     all_book_pods = soup.find_all("article", class_="product_pod")
 
@@ -100,8 +97,31 @@ def fetch_gbp_exchange_rate(target_currency_code):
             else:
                 print(f"Currency code '{target_currency_code}' not found in exchange rates.")
                 return None
+            
+def convert_book_prices(scraped_books_list, live_exchange_rate, target_currency_code):
+    
+    # Empty list to store books with converted prices
+    books_with_converted_prices = []
 
-      
+    for single_book in scraped_books_list:
+
+        original_gbp_price = single_book["price_gbp"]
+
+        # The core conversion — multiply GBP price by exchange rate
+        raw_converted_price = original_gbp_price * live_exchange_rate
+
+        # Round to 2 decimal places for clean display
+        final_converted_price = round(raw_converted_price, 2)
+
+        # Add the converted price into the book dictionary as a new key
+        single_book["converted_price"] = final_converted_price
+        single_book["currency"] = target_currency_code
+
+        books_with_converted_prices.append(single_book)
+
+    print(f"Successfully converted {len(books_with_converted_prices)} book prices to {target_currency_code}\n")
+    return books_with_converted_prices
+
 # --- Run it ---
 page = fetch_bookstore_page(bookstore_url)
 
@@ -109,14 +129,21 @@ if page is not None:
     book_listings = scrape_book_listings(page)
 
     if len(book_listings) > 0:
-        print("First 5 Cleaned Books:")
-        for book in book_listings[:5]:
-            print(f"  {book['title']} — £{book['price_gbp']:.2f}")
+        exchange_rate = fetch_gbp_exchange_rate("KES")
 
-    # Test the currency API
-    print()
-    exchange_rate = fetch_gbp_exchange_rate("KES")
+        if exchange_rate is not None:
+            converted_book_listings = convert_book_prices(book_listings, exchange_rate, "KES")
 
+            # Preview first 5 converted books
+            print("First 5 Books with Converted Prices:")
+            for book in converted_book_listings[:5]:
+                print(f"  {book['title']}")
+                print(f"    GBP: £{book['price_gbp']:.2f}  →  {book['currency']}: {book['converted_price']:.2f}")
+
+
+      
+
+  
 
     
 

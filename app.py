@@ -83,7 +83,7 @@ if page is not None:
     if len(book_listings) > 0:
         print("First 5 Scraped Books:")
         for book in book_listings[:5]:
-            print(f"  {book['title']} — £{book['price_gbp']}")
+            print(f"  {book['title']} — £{book['price_gbp']:.2f}")
     else:
         print("No books were scraped.")
 

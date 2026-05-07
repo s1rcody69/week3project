@@ -1,5 +1,6 @@
 import requests 
 from bs4 import BeautifulSoup
+import json
 
 bookstore_url = "https://books.toscrape.com/"
 

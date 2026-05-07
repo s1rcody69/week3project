@@ -123,6 +123,28 @@ def convert_book_prices(scraped_books_list, live_exchange_rate, target_currency_
     print(f"Successfully converted {len(books_with_converted_prices)} book prices to {target_currency_code}\n")
     return books_with_converted_prices
 
+def save_books_to_json(converted_books_list, target_currency_code):
+    
+    # Name the output file after the currency used
+    json_output_filename = f"book_prices_{target_currency_code}.json"
+
+    # Structure the final data with a summary header + the books list
+    json_output_data = {
+        "base_currency": "GBP",
+        "converted_currency": target_currency_code,
+        "total_books": len(converted_books_list),
+        "books": converted_books_list
+    }
+
+    # Open the file and write the data into it
+    json_output_file = open(json_output_filename, "w")
+    json.dump(json_output_data, json_output_file, indent=4)
+    json_output_file.close()
+
+    print(f"Data saved to: {json_output_filename}")
+    print(f"Total books saved: {len(converted_books_list)}")
+
+
 # --- Run it ---
 page = fetch_bookstore_page(bookstore_url)
 
@@ -134,13 +156,7 @@ if page is not None:
 
         if exchange_rate is not None:
             converted_book_listings = convert_book_prices(book_listings, exchange_rate, "KES")
-
-            # Preview first 5 converted books
-            print("First 5 Books with Converted Prices:")
-            for book in converted_book_listings[:5]:
-                print(f"  {book['title']}")
-                print(f"    GBP: £{book['price_gbp']:.2f}  →  {book['currency']}: {book['converted_price']:.2f}")
-
+            save_books_to_json(converted_book_listings, "KES")
 
       
 

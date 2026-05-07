@@ -73,19 +73,50 @@ def scrape_book_listings(page_response):
 
     return scraped_books_list
 
+def fetch_gbp_exchange_rate(target_currency_code):
+    
+    # Build the API URL using our key and base currency GBP
+    exchange_api_url = f" https://v6.exchangerate-api.com/v6/6bfb72abbf9707f168f2d6f0/latest/GBP"
+
+    currency_api_response = requests.get(exchange_api_url, timeout=10)
+
+    if currency_api_response.status_code == 200:
+
+        # Parse the JSON response into a Python dictionary
+        exchange_rate_data = currency_api_response.json()
+
+        # Check the API's own result field to confirm success
+        if exchange_rate_data["result"] == "success":
+
+            # Pull out all available rates
+            all_available_rates = exchange_rate_data["conversion_rates"]
+
+            # Check if our target currency exists in the rates
+            if target_currency_code in all_available_rates:
+                live_exchange_rate = all_available_rates[target_currency_code]
+                print(f"Live Exchange Rate: 1 GBP = {live_exchange_rate} {target_currency_code}\n")
+                return live_exchange_rate
+
+            else:
+                print(f"Currency code '{target_currency_code}' not found in exchange rates.")
+                return None
+
+      
 # --- Run it ---
 page = fetch_bookstore_page(bookstore_url)
 
 if page is not None:
     book_listings = scrape_book_listings(page)
 
-    # Print first 5 books to verify
     if len(book_listings) > 0:
-        print("First 5 Scraped Books:")
+        print("First 5 Cleaned Books:")
         for book in book_listings[:5]:
             print(f"  {book['title']} — £{book['price_gbp']:.2f}")
-    else:
-        print("No books were scraped.")
+
+    # Test the currency API
+    print()
+    exchange_rate = fetch_gbp_exchange_rate("KES")
+
 
     
 

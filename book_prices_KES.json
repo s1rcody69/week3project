@@ -1,0 +1,127 @@
+{
+    "base_currency": "GBP",
+    "converted_currency": "KES",
+    "total_books": 20,
+    "books": [
+        {
+            "title": "A Light in the Attic",
+            "price_gbp": 51.77,
+            "converted_price": 9096.2,
+            "currency": "KES"
+        },
+        {
+            "title": "Tipping the Velvet",
+            "price_gbp": 53.74,
+            "converted_price": 9442.33,
+            "currency": "KES"
+        },
+        {
+            "title": "Soumission",
+            "price_gbp": 50.1,
+            "converted_price": 8802.77,
+            "currency": "KES"
+        },
+        {
+            "title": "Sharp Objects",
+            "price_gbp": 47.82,
+            "converted_price": 8402.17,
+            "currency": "KES"
+        },
+        {
+            "title": "Sapiens: A Brief History of Humankind",
+            "price_gbp": 54.23,
+            "converted_price": 9528.43,
+            "currency": "KES"
+        },
+        {
+            "title": "The Requiem Red",
+            "price_gbp": 22.65,
+            "converted_price": 3979.7,
+            "currency": "KES"
+        },
+        {
+            "title": "The Dirty Little Secrets of Getting Your...",
+            "price_gbp": 33.34,
+            "converted_price": 5857.97,
+            "currency": "KES"
+        },
+        {
+            "title": "The Coming Woman: A Novel Based on the L...",
+            "price_gbp": 17.93,
+            "converted_price": 3150.37,
+            "currency": "KES"
+        },
+        {
+            "title": "The Boys in the Boat: Nine Americans and...",
+            "price_gbp": 22.6,
+            "converted_price": 3970.91,
+            "currency": "KES"
+        },
+        {
+            "title": "The Black Maria",
+            "price_gbp": 52.15,
+            "converted_price": 9162.96,
+            "currency": "KES"
+        },
+        {
+            "title": "Starving Hearts (Triangular Trade Trilog...",
+            "price_gbp": 13.99,
+            "converted_price": 2458.1,
+            "currency": "KES"
+        },
+        {
+            "title": "Shakespeare's Sonnets",
+            "price_gbp": 20.66,
+            "converted_price": 3630.04,
+            "currency": "KES"
+        },
+        {
+            "title": "Set Me Free",
+            "price_gbp": 17.46,
+            "converted_price": 3067.79,
+            "currency": "KES"
+        },
+        {
+            "title": "Scott Pilgrim's Precious Little Life (Sc...",
+            "price_gbp": 52.29,
+            "converted_price": 9187.56,
+            "currency": "KES"
+        },
+        {
+            "title": "Rip it Up and Start Again",
+            "price_gbp": 35.02,
+            "converted_price": 6153.15,
+            "currency": "KES"
+        },
+        {
+            "title": "Our Band Could Be Your Life: Scenes from...",
+            "price_gbp": 57.25,
+            "converted_price": 10059.05,
+            "currency": "KES"
+        },
+        {
+            "title": "Olio",
+            "price_gbp": 23.88,
+            "converted_price": 4195.81,
+            "currency": "KES"
+        },
+        {
+            "title": "Mesaerion: The Best Science Fiction Stor...",
+            "price_gbp": 37.59,
+            "converted_price": 6604.71,
+            "currency": "KES"
+        },
+        {
+            "title": "Libertarianism for Beginners",
+            "price_gbp": 51.33,
+            "converted_price": 9018.89,
+            "currency": "KES"
+        },
+        {
+            "title": "It's Only the Himalayas",
+            "price_gbp": 45.17,
+            "converted_price": 7936.55,
+            "currency": "KES"
+        }
+    ]
+}
